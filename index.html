@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Phishing Detection System for cybersecurity education using defensive rule-based URL analysis.">
+    <title>Phishing Detection System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="brand">
+                <div class="brand-mark">PD</div>
+                <div>
+                    <p class="eyebrow">CSec Project</p>
+                    <h1>Phishing Detection System</h1>
+                </div>
+            </div>
+
+            <nav class="main-nav" aria-label="Primary navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home" class="hero card glow-card">
+                <div class="hero-copy">
+                    <p class="eyebrow">Rule-Based URL Inspection</p>
+                    <h2>Analyze suspicious links and estimate phishing risk in seconds.</h2>
+                    <p class="hero-text">
+                        This educational web application inspects a URL for common phishing indicators such as missing HTTPS,
+                        hidden redirects, deceptive domains, suspicious keywords, and URL shorteners.
+                    </p>
+
+                    <div class="hero-highlights">
+                        <div class="mini-stat">
+                            <span class="mini-stat-value">0–100</span>
+                            <span class="mini-stat-label">Risk Scale</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value">9+</span>
+                            <span class="mini-stat-label">Checks</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value">Defensive</span>
+                            <span class="mini-stat-label">Use Only</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scanner card secondary-card">
+                    <h3>Check a URL</h3>
+                    <p class="section-text">Enter a website address to run phishing-focused rule analysis.</p>
+
+                    <form id="phishing-form" class="analyzer-form">
+                        <label class="sr-only" for="url-input">URL to analyze</label>
+                        <input
+                            id="url-input"
+                            name="url"
+                            type="text"
+                            placeholder="https://example.com/login"
+                            autocomplete="off"
+                            spellcheck="false"
+                            required
+                        >
+                        <button id="analyze-btn" type="submit">Check URL</button>
+                    </form>
+
+                    <div id="input-feedback" class="input-feedback" aria-live="polite"></div>
+
+                    <div id="loading-state" class="loading-state hidden" aria-live="polite">
+                        <div class="loader-ring"></div>
+                        <p>Running rule-based phishing analysis...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="overview-grid">
+                <article class="card info-card">
+                    <h3>What it checks</h3>
+                    <ul class="feature-list">
+                        <li>HTTPS usage</li>
+                        <li>IP address based URLs</li>
+                        <li>Unusual URL length</li>
+                        <li>`@` symbols and redirect patterns</li>
+                        <li>Hyphenated domains and deep subdomains</li>
+                        <li>Shorteners, keywords, and risky TLDs</li>
+                    </ul>
+                </article>
+
+                <article class="card info-card">
+                    <h3>Scoring model</h3>
+                    <ul class="feature-list">
+                        <li><span class="status-pill safe">0</span> Safe</li>
+                        <li><span class="status-pill suspicious">1–44</span> Suspicious</li>
+                        <li><span class="status-pill phishing">45–100</span> Unsafe</li>
+                    </ul>
+                </article>
+
+                <article class="card info-card">
+                    <h3>Educational note</h3>
+                    <p class="section-text">
+                        This project is designed for cybersecurity education only. It does not create phishing content
+                        or perform attacks. It helps users inspect URLs with defensive heuristics.
+                    </p>
+                </article>
+            </section>
+
+            <section id="results" class="results-section hidden">
+                <div class="results-header">
+                    <div>
+                        <p class="eyebrow">Analysis Result</p>
+                        <h2>Scan Output</h2>
+                    </div>
+                    <div id="result-status-badge" class="result-status-badge">Awaiting Input</div>
+                </div>
+
+                <div class="results-grid">
+                    <article class="card result-hero">
+                        <div class="score-wrap">
+                            <div id="score-circle" class="score-circle safe">
+                                <span id="score-value">0</span>
+                            </div>
+                            <div>
+                                <p class="metric-label">Input URL</p>
+                                <p id="analyzed-url" class="analyzed-url">No URL analyzed yet.</p>
+                                <p class="metric-label status-label">Status</p>
+                                <h3 id="overall-status">SAFE</h3>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="score-card" class="card result-card">
+                        <h3>Risk Score</h3>
+                        <p id="score-text" class="section-text">0</p>
+                    </article>
+
+                    <article id="failed-card" class="card result-card full-width">
+                        <h3>Failed Checks</h3>
+                        <ul id="failed-list" class="detail-list"></ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="about" class="card content-section">
+                <p class="eyebrow">About</p>
+                <h2>Understanding phishing attacks</h2>
+                <p class="section-text">
+                    Phishing is a social engineering technique where attackers try to trick users into revealing passwords,
+                    financial information, or personal data through deceptive links, fake login forms, and lookalike websites.
+                </p>
+                <p class="section-text">
+                    The goal of this project is to demonstrate how defensive, rule-based analysis can detect common warning signs
+                    in suspicious URLs before a user visits the site.
+                </p>
+
+                <div class="tools-grid">
+                    <div class="tool-chip">HTML5</div>
+                    <div class="tool-chip">CSS3</div>
+                    <div class="tool-chip">Vanilla JavaScript</div>
+                    <div class="tool-chip">Rule-Based Detection</div>
+                    <div class="tool-chip">Responsive UI</div>
+                    <div class="tool-chip">Dark Cyber Theme</div>
+                </div>
+            </section>
+
+            <section id="contact" class="card content-section">
+                <p class="eyebrow">Contact</p>
+                <h2>Project information</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>Developer</h3>
+                        <p>Student Developer</p>
+                        <p>Cybersecurity / Full-Stack Project</p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>University Project</h3>
+                        <p>Course: Cybersecurity</p>
+                        <p>Topic: Phishing Detection Using URL Heuristics</p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Purpose</h3>
+                        <p>Educational and defensive analysis only</p>
+                        <p>Safe for demonstrations and academic submissions</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
